@@ -9,16 +9,21 @@ import java.util.Map;
 public class Task2 {
     public static void main(String[] args) {
         ArrayList<String> listEmployees = new ArrayList<>(Arrays.asList("Иван", "Петр", "Анатолий", "Светлана",
-                "Елизавеа", "Дорофей", "Николай", "Ирина", "Иван", "Дорофей", "Татьяна", "Евгений", "Анатолий",
+                "Елизавета", "Дорофей", "Николай", "Ирина", "Иван", "Дорофей", "Татьяна", "Евгений", "Анатолий",
                 "Светлана", "Николай", "Иван", "Наталия", "София", "Кирилл", "Ярослав", "Николай", "Петр", "Владимир",
                 "Александр", "София", "Елизавета", "Людмила", "Евгений", "Иван", "Ирина", "Вячеслав", "Ярослав"));
+        countDuplicateNames(listEmployees);
     }
-    private static void getDuplicateNames(ArrayList<String> listNames){
+    private static void countDuplicateNames(ArrayList<String> listNames){ //считать повтояющиеся имена
         Map<String, Integer> nameQuantity = new HashMap<>();
-        int count = 1;
         for (String name : listNames) {
-            if(nameQuantity.containsKey(name));
-
+            if(nameQuantity.containsKey(name)) {
+                int count = nameQuantity.get(name);
+                nameQuantity.put(name, ++count);
+            } else nameQuantity.put(name, 1);
+        }
+        for (Map.Entry<String, Integer> entry: nameQuantity.entrySet()) {
+            System.out.printf("%-10s %-5s\n", entry.getKey(), entry.getValue());
         }
     }
 }
